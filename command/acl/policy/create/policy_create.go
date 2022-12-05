@@ -66,10 +66,6 @@ func (c *cmd) init() {
 	c.help = flags.Usage(help, c.flags)
 }
 
-func (c *cmd) getRules() (string, error) {
-	return helpers.LoadDataSource(c.rules, c.testStdin)
-}
-
 func (c *cmd) Run(args []string) int {
 	if err := c.flags.Parse(args); err != nil {
 		return 1
@@ -87,7 +83,7 @@ func (c *cmd) Run(args []string) int {
 		return 1
 	}
 
-	rules, err := c.getRules()
+	rules, err := helpers.LoadDataSource(c.rules, c.testStdin)
 	if err != nil {
 		c.UI.Error(fmt.Sprintf("Error loading rules: %v", err))
 		return 1
