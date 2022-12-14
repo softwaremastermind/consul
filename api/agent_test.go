@@ -14,6 +14,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/stretchr/testify/assert"
+
 	"github.com/hashicorp/serf/serf"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
