@@ -1,0 +1,3 @@
+```release-note:deprecation
+acl: remove all acl token migration functionality and references to legacy acl tokens.
+```

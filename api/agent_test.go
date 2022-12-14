@@ -1543,19 +1543,19 @@ func TestAPI_AgentUpdateToken(t *testing.T) {
 	t.Run("deprecated", func(t *testing.T) {
 		agent := c.Agent()
 		if _, err := agent.UpdateACLToken("root", nil); err != nil {
-			t.Fatalf("err: %v", err)
+			require.Contains(t, err.Error(), "Legacy ACL Tokens were deprecated in Consul 1.4")
 		}
 
 		if _, err := agent.UpdateACLAgentToken("root", nil); err != nil {
-			t.Fatalf("err: %v", err)
+			require.Contains(t, err.Error(), "Legacy ACL Tokens were deprecated in Consul 1.4")
 		}
 
 		if _, err := agent.UpdateACLAgentMasterToken("root", nil); err != nil {
-			t.Fatalf("err: %v", err)
+			require.Contains(t, err.Error(), "Legacy ACL Tokens were deprecated in Consul 1.4")
 		}
 
 		if _, err := agent.UpdateACLReplicationToken("root", nil); err != nil {
-			t.Fatalf("err: %v", err)
+			require.Contains(t, err.Error(), "Legacy ACL Tokens were deprecated in Consul 1.4")
 		}
 	})
 

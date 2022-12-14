@@ -182,8 +182,6 @@ func authzFromPolicy(policy *acl.Policy, cfg *acl.Config) (acl.Authorizer, error
 
 type testToken struct {
 	token structs.ACLToken
-	// yes the rules can exist on the token itself but that is legacy behavior
-	// that I would prefer these tests not rely on
 	rules string
 }
 
