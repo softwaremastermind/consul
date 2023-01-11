@@ -1420,6 +1420,7 @@ func UpstreamConfigToStructs(s *UpstreamConfig, t *structs.UpstreamConfig) {
 	}
 	t.Name = s.Name
 	t.EnterpriseMeta = enterpriseMetaToStructs(s.EnterpriseMeta)
+	t.Peer = s.Peer
 	t.EnvoyListenerJSON = s.EnvoyListenerJSON
 	t.EnvoyClusterJSON = s.EnvoyClusterJSON
 	t.Protocol = s.Protocol
@@ -1445,6 +1446,7 @@ func UpstreamConfigFromStructs(t *structs.UpstreamConfig, s *UpstreamConfig) {
 	}
 	s.Name = t.Name
 	s.EnterpriseMeta = enterpriseMetaFromStructs(t.EnterpriseMeta)
+	s.Peer = t.Peer
 	s.EnvoyListenerJSON = t.EnvoyListenerJSON
 	s.EnvoyClusterJSON = t.EnvoyClusterJSON
 	s.Protocol = t.Protocol

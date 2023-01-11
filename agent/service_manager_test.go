@@ -420,15 +420,21 @@ func TestServiceManager_PersistService_API(t *testing.T) {
 				"foo":      1,
 				"protocol": "http",
 			},
-			UpstreamIDConfigs: structs.OpaqueUpstreamConfigs{
+			UpstreamConfigs: structs.OpaqueUpstreamConfigs{
 				{
-					Upstream: structs.NewServiceID(structs.WildcardSpecifier, acl.DefaultEnterpriseMeta().WithWildcardNamespace()),
+					Upstream: structs.PeeredServiceName{
+						ServiceName: structs.NewServiceName(
+							structs.WildcardSpecifier,
+							acl.DefaultEnterpriseMeta().WithWildcardNamespace()),
+					},
 					Config: map[string]interface{}{
 						"foo": int64(1),
 					},
 				},
 				{
-					Upstream: structs.NewServiceID("redis", nil),
+					Upstream: structs.PeeredServiceName{
+						ServiceName: structs.NewServiceName("redis", nil),
+					},
 					Config: map[string]interface{}{
 						"protocol": "tcp",
 					},
@@ -474,15 +480,21 @@ func TestServiceManager_PersistService_API(t *testing.T) {
 				"foo":      1,
 				"protocol": "http",
 			},
-			UpstreamIDConfigs: structs.OpaqueUpstreamConfigs{
+			UpstreamConfigs: structs.OpaqueUpstreamConfigs{
 				{
-					Upstream: structs.NewServiceID(structs.WildcardSpecifier, acl.DefaultEnterpriseMeta().WithWildcardNamespace()),
+					Upstream: structs.PeeredServiceName{
+						ServiceName: structs.NewServiceName(
+							structs.WildcardSpecifier,
+							acl.DefaultEnterpriseMeta().WithWildcardNamespace()),
+					},
 					Config: map[string]interface{}{
 						"foo": int64(1),
 					},
 				},
 				{
-					Upstream: structs.NewServiceID("redis", nil),
+					Upstream: structs.PeeredServiceName{
+						ServiceName: structs.NewServiceName("redis", nil),
+					},
 					Config: map[string]interface{}{
 						"protocol": "tcp",
 					},
@@ -659,15 +671,21 @@ func TestServiceManager_PersistService_ConfigFiles(t *testing.T) {
 				"foo":      1,
 				"protocol": "http",
 			},
-			UpstreamIDConfigs: structs.OpaqueUpstreamConfigs{
+			UpstreamConfigs: structs.OpaqueUpstreamConfigs{
 				{
-					Upstream: structs.NewServiceID(structs.WildcardSpecifier, acl.DefaultEnterpriseMeta().WithWildcardNamespace()),
+					Upstream: structs.PeeredServiceName{
+						ServiceName: structs.NewServiceName(
+							structs.WildcardSpecifier,
+							acl.DefaultEnterpriseMeta().WithWildcardNamespace()),
+					},
 					Config: map[string]interface{}{
 						"foo": int64(1),
 					},
 				},
 				{
-					Upstream: structs.NewServiceID("redis", nil),
+					Upstream: structs.PeeredServiceName{
+						ServiceName: structs.NewServiceName("redis", nil),
+					},
 					Config: map[string]interface{}{
 						"protocol": "tcp",
 					},
@@ -841,6 +859,9 @@ func fixPersistedServiceConfigForTest(content []byte) ([]byte, error) {
 	// Sort the output, since it's randomized and causes flaky tests otherwise.
 	sort.Slice(parsed.Defaults.UpstreamIDConfigs, func(i, j int) bool {
 		return parsed.Defaults.UpstreamIDConfigs[i].Upstream.ID < parsed.Defaults.UpstreamIDConfigs[j].Upstream.ID
+	})
+	sort.Slice(parsed.Defaults.UpstreamConfigs, func(i, j int) bool {
+		return parsed.Defaults.UpstreamConfigs[i].Upstream.String() < parsed.Defaults.UpstreamConfigs[j].Upstream.String()
 	})
 	out, err := json.Marshal(parsed)
 	if err != nil {
