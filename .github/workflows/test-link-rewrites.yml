@@ -5,7 +5,8 @@ on: [deployment_status]
 jobs:
   test-link-rewrites:
     if: github.event.deployment_status.state == 'success'
-    uses: hashicorp/dev-portal/.github/workflows/docs-content-link-rewrites-e2e.yml@2aceb60125f6c15f4c8dbe2e4d79148047bfa437
+    # TODO update commit sha referenced before merging
+    uses: hashicorp/dev-portal/.github/workflows/docs-content-link-rewrites-e2e.yml@amb.adjust-link-rewrite-script
     with:
       repo-owner: "hashicorp"
       repo-name: "consul"
