@@ -90,7 +90,7 @@ This shift from an IP address-based security model to a service-focused model re
 
 Service meshes are commonly installed in Kubernetes clusters. There are also platform-agnostic service meshes available for non-Kubernetes-based workloads.
 For Kubernetes, most service meshes can be installed by operators through a [Helm chart](https://helm.sh/). Additionally, the service mesh may offer a CLI tool that supports the installation and maintenance of the service mesh.
-Non-Kubernetes based service meshes can be installed through infrastructure as code (IaC) products such as [Terraform](https://www.terraform.io/), CloudFormation, ARM Templates, Puppet, Chef, etc.
+Non-Kubernetes based service meshes can be installed through infrastructure as code (IaC) products such as [Terraform](/terraform), CloudFormation, ARM Templates, Puppet, Chef, etc.
 
 ## What is a multi platform service mesh?
 
@@ -104,13 +104,13 @@ Consul offers a software-driven approach to routing and segmentation. It also br
 Each of these features can be used individually as needed or they can be used together to build a full service mesh and achieve [zero trust](https://www.hashicorp.com/solutions/zero-trust-security) security.
 In simple terms, Consul is the control plane of the service mesh. The data plane is supported by Consul through its first class support of [Envoy](https://www.envoyproxy.io/) as a proxy.
 
-You can use Consul with virtual machines (VMs), containers, or with container orchestration platforms, such as [Nomad](https://www.nomadproject.io/) and Kubernetes.
+You can use Consul with virtual machines (VMs), containers, or with container orchestration platforms, such as [Nomad](/nomad) and Kubernetes.
 Consul is platform agnostic which makes it a great fit for all environments, including legacy platforms.
 
-Consul is available as a [self-install](/downloads) project or as a fully managed service mesh solution called [HCP Consul](https://portal.cloud.hashicorp.com/sign-in?utm_source=consul_docs).
+Consul is available as a [self-install](/consul/downloads) project or as a fully managed service mesh solution called [HCP Consul](https://portal.cloud.hashicorp.com/sign-in?utm_source=consul_docs).
 HCP Consul enables users to discover and securely connect services without the added operational burden of maintaining a service mesh on their own.
 
-You can learn more about Consul by visiting the Consul [tutorials](https://learn.hashicorp.com/consul).
+You can learn more about Consul by visiting the Consul [tutorials](/consul/tutorials).
 
 ## Next
 
