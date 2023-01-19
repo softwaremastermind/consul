@@ -266,3 +266,41 @@ func TestRequestRecorder(t *testing.T) {
 		})
 	}
 }
+
+// func TestGetNetRPCRateLimitingInterceptor(t *testing.T) {
+// 	limiter := rate.NewMockRequestLimitsHandler(t)
+// 	s := NewTestServer(t, func(c *consul.Config) {
+// 		c.RequestLimitsMode = "enforcing"
+// 	})
+
+// 	logger := hclog.NewNullLogger()
+// 	rpcServerOpts := []func(*rpc.Server){
+// 		rpc.WithPreBodyInterceptor(GetNetRPCRateLimitingInterceptor(limiter, NewPanicHandler(logger))),
+// 	}
+
+// 	server := rpc.NewServerWithOpts(rpcServerOpts...)
+
+// 	conn, err := net.Dial("tcp", "127.0.0.1:0")
+// 	require.NoError(t, err)
+
+// 	client := rpc.NewClient(conn)
+// 	require.NoError(t, err)
+// 	t.Cleanup(func() {
+// 		if err := conn.Close(); err != nil {
+// 			t.Logf("failed to close client connection: %v", err)
+// 		}
+// 	})
+
+// 	ctx, cancel := context.WithCancel(context.Background())
+// 	t.Cleanup(cancel)
+
+// 	t.Run("Allow panics", func(t *testing.T) {
+// 		limiter.On("Allow", mock.Anything).
+// 			Panic("uh oh").
+// 			Once()
+
+// 		_, err = client.(ctx, &pbacl.LoginRequest{})
+// 		require.Error(t, err)
+// 		require.Equal(t, codes.Internal.String(), status.Code(err).String())
+// 	})
+// }
