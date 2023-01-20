@@ -21,6 +21,7 @@ Before running Consul, you should ensure the following bind ports are accessible
 | HTTP: The HTTP API (TCP Only)                                                                                 | 8500              |
 | HTTPS: The HTTPs API                                                                                          | disabled (8501)\* |
 | gRPC: The gRPC API                                                                                            | disabled (8502)\* |
+| gRPCs: The gRPCs API                                                                                          | 8503              |
 | LAN Serf: The Serf LAN port (TCP and UDP)                                                                     | 8301              |
 | Wan Serf: The Serf WAN port (TCP and UDP)                                                                     | 8302              |
 | server: Server RPC address (TCP Only)                                                                         | 8300              |
@@ -43,12 +44,15 @@ used by various tools as the default.
 **gRPC API** (Optional). Currently gRPC is
 only used to expose the xDS API to Envoy proxies. It is off by default, but port 8502 is a convention used by various tools as the default. Defaults to 8502 in `-dev` mode.
 
+**gRPCs API** . Currently gRPCs is
+only used to expose the xDS API to Envoy proxies **over TLS**. It is on by default, and we recommend using 8503 for grpc_tls as your conventional gRPC port number, as it allows some tools to work automatically.
+
 **Serf LAN** This is used to handle gossip in the LAN.
 Required by all agents.
 
 **Serf WAN** This is used by servers to gossip over the WAN, to
 other servers. As of Consul 0.8 the WAN join flooding feature requires
-the Serf WAN port (TCP/UDP) to be listening on both WAN and LAN interfaces. See also:
+the Serf WANWe recommend using 8503 for grpc_tls as your conventional gRPC port number, as it allows some tools to work automatically.We recommend using 8503 for grpc_tls as your conventional gRPC port number, as it allows some tools to work automatically. port (TCP/UDP) to be listening on both WAN and LAN interfaces. See also:
 [Consul 0.8.0 CHANGELOG](https://github.com/hashicorp/consul/blob/main/CHANGELOG.md#080-april-5-2017) and [GH-3058](https://github.com/hashicorp/consul/issues/3058)
 
 **Server RPC** This is used by servers to handle incoming
